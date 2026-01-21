@@ -7,6 +7,10 @@
     <title>AR Agence Web - Création de Sites Web Professionnels | Experts Digitaux</title>
     <meta name="description"
         content="AR Agence Web crée des sites web sur mesure pour PME et entrepreneurs. Site vitrine, e-commerce, refonte et SEO. Devis gratuit sous 48h.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="image/Agency web.png">
+
     <style>
         * {
             margin: 0;
@@ -62,8 +66,18 @@
         }
 
         .logo img {
-            height: 45px;
+            height: 50px;
             width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--gold);
         }
 
         .nav-links {
@@ -242,6 +256,70 @@
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
+        }
+
+        /* Who We Are Section */
+        .who-we-are {
+            background: var(--white);
+        }
+
+        .who-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .who-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .who-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .who-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .who-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         /* About Section */
@@ -443,7 +521,7 @@
         .portfolio-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .portfolio-content {
@@ -457,12 +535,13 @@
         }
 
         .portfolio-content h3 a {
-            color: inherit;
+            color: var(--primary);
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         .portfolio-content h3 a:hover {
-            text-decoration: underline;
+            color: var(--gold);
         }
 
         .portfolio-content p {
@@ -528,6 +607,10 @@
             border-radius: 8px;
             flex-shrink: 0;
             overflow: hidden;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .author-avatar img {
@@ -735,9 +818,19 @@
             margin: 0 auto;
         }
 
-        .footer-logo {
-            width: 90px;
-            height: auto;
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-logo-text img {
+            height: 45px;
+            width: auto;
+        }
+
+        .footer-logo-text span {
+            color: var(--gold);
         }
 
         .footer-text {
@@ -762,22 +855,11 @@
         }
 
         .footer-nav {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            column-gap: 20px;
-            position: relative;
-        }
-
-        .footer-nav::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            justify-content: flex-end;
+            max-width: 400px;
         }
 
         .footer-nav a {
@@ -794,6 +876,7 @@
         /* Responsive */
         @media (max-width: 1024px) {
 
+            .who-content,
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
@@ -808,6 +891,10 @@
 
             .process-steps {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -953,6 +1040,10 @@
                 font-size: 1.5rem;
             }
 
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
             .footer {
                 padding: 2rem 1.5rem 1.5rem;
             }
@@ -961,10 +1052,6 @@
                 flex-direction: column;
                 gap: 2rem;
                 text-align: center;
-            }
-
-            .footer-logo {
-                width: 70px;
             }
 
             .footer-nav {
@@ -1024,9 +1111,11 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="image/Agency web.png" alt="AR Agence Web">
+                <img src="image/Agency web.png" alt="AR Agence Web Logo">
             </div>
             <ul class="nav-links" id="navLinks">
+                <li><a href="#qui-sommes-nous">Qui sommes-nous</a></li>
+                <li><a href="#about">À propos</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#processus">Processus</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
@@ -1051,6 +1140,43 @@
             <div class="hero-ctas">
                 <a href="#contact" class="btn-primary">Démarrer mon projet</a>
                 <a href="#services" class="btn-secondary">Découvrir nos services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="who-we-are" id="qui-sommes-nous">
+        <div class="container">
+            <div class="section-title">
+                <h2>Qui sommes-nous ?</h2>
+                <p>Une équipe passionnée au service de votre réussite digitale</p>
+            </div>
+            <div class="who-content">
+                <div class="who-text">
+                    <h3>AR Agence Web : Votre partenaire digital de confiance</h3>
+                    <p>Nous, c'est Roméo et Andy, deux amis de 16 ans, originaires de Vacqueyras. Passionnés depuis
+                        toujours par le numérique, les jeux vidéo et tout ce qui touche à la création en ligne, nous
+                        passons beaucoup de temps à apprendre, tester et comprendre comment fonctionne le web. <br>
+
+                        Très vite, une idée nous est venue : Pourquoi ne pas transformer cette passion en projet concret
+                        ?
+                        <br><br>
+                        Nous avions envie d'entreprendre, mais surtout de rendre service. En discutant autour de nous,
+                        nous avons remarqué que beaucoup de petites entreprises locales n'avaient pas de site web ou un
+                        site peu adapté à leurs besoins. C'est là que tout a commencé.
+                        <br><br>
+                        Avec l'aide de nos parents, nous avons créé notre micro-entreprise afin de proposer des sites
+                        web modernes, simples et efficaces, accessibles aux professionnels de notre région.
+                        <br><br>
+                        Aujourd'hui, nous sommes fiers d'être enfin lancés dans ce projet commun, avec une seule
+                        ambition :
+                        aider les entreprises locales à se développer grâce au numérique.
+                    </p>
+                </div>
+                <div class="who-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+                        alt="Équipe AR Agence Web travaillant ensemble">
+                </div>
             </div>
         </div>
     </section>
@@ -1197,11 +1323,8 @@
                         <img src="image/bethanie-logo.ico" alt="Centre Carrefour Bethanie">
                     </div>
                     <div class="portfolio-content">
-                        <h3>
-                            <a href="https://centre-carrefour-béthanie.fr" target="_blank" rel="noopener noreferrer">
-                                Centre Carrefour Bethanie
-                            </a>
-                        </h3>
+                        <h3><a href="https://centre-carrefour-béthanie.fr" target="_blank"
+                                rel="noopener noreferrer">Centre Carrefour Bethanie</a></h3>
                         <p>Site vitrine pour une association protestante dans le Gard</p>
                         <p><strong>+ de visibilité</strong> en quelques semaines</p>
                         <span class="portfolio-tag">centre de location de bâtiment</span>
@@ -1209,10 +1332,12 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="image/projet2.jpg" alt="FitStore">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop"
+                            alt="FitStore E-commerce">
                     </div>
                     <div class="portfolio-content">
-                        <h3>FitStore</h3>
+                        <h3><a href="https://www.fitstore.fr" target="_blank" rel="noopener noreferrer">FitStore</a>
+                        </h3>
                         <p>Boutique e-commerce nutrition sportive performante</p>
                         <p><strong>180 000€ de CA</strong> la première année</p>
                         <span class="portfolio-tag">E-commerce</span>
@@ -1220,10 +1345,12 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="image/projet3.jpg" alt="Cabinet Conseil RH">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop"
+                            alt="Cabinet Conseil RH">
                     </div>
                     <div class="portfolio-content">
-                        <h3>Cabinet Conseil RH</h3>
+                        <h3><a href="https://www.cabinet-conseil-rh.fr" target="_blank"
+                                rel="noopener noreferrer">Cabinet Conseil RH</a></h3>
                         <p>Refonte complète avec optimisation performance</p>
                         <p>Temps de chargement <strong>divisé par 4</strong>, taux de rebond <strong>-35%</strong></p>
                         <span class="portfolio-tag">Services B2B</span>
@@ -1231,10 +1358,12 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="image/projet4.jpg" alt="Maison Fleurie">
+                        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=600&fit=crop"
+                            alt="Maison Fleurie">
                     </div>
                     <div class="portfolio-content">
-                        <h3>Maison Fleurie</h3>
+                        <h3><a href="https://www.maison-fleurie.fr" target="_blank" rel="noopener noreferrer">Maison
+                                Fleurie</a></h3>
                         <p>Site vitrine + e-commerce pour fleuriste local</p>
                         <p>Référencement local en <strong>1ère position Google</strong></p>
                         <span class="portfolio-tag">Commerce local</span>
@@ -1259,7 +1388,8 @@
                         conversion a doublé !"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="image/avatar1.jpg" alt="Sophie Martin">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+                                alt="Sophie Martin">
                         </div>
                         <div class="author-info">
                             <h4>Sophie Martin</h4>
@@ -1274,7 +1404,8 @@
                         mise en ligne."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="image/avatar2.jpg" alt="Marc Dubois">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
+                                alt="Marc Dubois">
                         </div>
                         <div class="author-info">
                             <h4>Marc Dubois</h4>
@@ -1289,7 +1420,8 @@
                         mon contenu en autonomie."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="image/avatar3.jpg" alt="Laure Klein">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+                                alt="Laure Klein">
                         </div>
                         <div class="author-info">
                             <h4>Laure Klein</h4>
@@ -1304,7 +1436,8 @@
                     </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="image/avatar4.jpg" alt="Thomas Rousseau">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop"
+                                alt="Thomas Rousseau">
                         </div>
                         <div class="author-info">
                             <h4>Thomas Rousseau</h4>
@@ -1339,7 +1472,7 @@
             </div>
             <div class="contact-container">
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xykklnvl" method="POST">
                         <div class="form-group">
                             <label for="name">Nom / Prénom *</label>
                             <input type="text" id="name" name="name" required>
@@ -1347,32 +1480,39 @@
 
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="_replyto" required>
                         </div>
 
                         <div class="form-group">
                             <label for="project">Type de projet *</label>
-                            <select id="project" name="project" required>
+                            <select id="project" name="Type de projet" required>
                                 <option value="">Sélectionnez...</option>
-                                <option value="vitrine">Site Vitrine</option>
-                                <option value="refonte">Refonte de site</option>
-                                <option value="autre">Autre</option>
+                                <option value="Site Vitrine">Site Vitrine</option>
+                                <option value="Refonte de site">Refonte de site</option>
+                                <option value="Autre">Autre</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="budget">Budget estimé (Optionnel)</label>
-                            <select id="budget" name="budget">
+                            <select id="budget" name="Budget estimé">
                                 <option value="">Sélectionnez...</option>
-                                <option value="1">Moins de 800€</option>
-                                <option value="2">900€ - 1500€</option>
-                                <option value="3">1600€ - 2000€</option>
-                                <option value="4">Plus de 2000€</option>
+                                <option value="Moins de 800€">Moins de 800€</option>
+                                <option value="900€ - 1500€">900€ - 1500€</option>
+                                <option value="1600€ - 2000€">1600€ - 2000€</option>
+                                <option value="Plus de 2000€">Plus de 2000€</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="message">Décrivez votre projet *</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <textarea id="message" name="Message" required></textarea>
                         </div>
+
+                        <!-- Champs cachés pour Formspree -->
+                        <input type="hidden" name="_subject" value="Nouvelle demande de projet - AR Agence Web">
+                        <input type="text" name="_gotcha" style="display:none">
+
                         <button type="submit" class="submit-btn">Envoyer ma demande</button>
                     </form>
                 </div>
@@ -1410,7 +1550,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <img src="image/Agency web.png" alt="AR Agence Web" class="footer-logo">
+            <div class="footer-logo-text">
+                <img src="image/Agency web.png" alt="AR Agence Web Logo">
+            </div>
 
             <div class="footer-text">
                 <p>© 2025 AR Agence Web – Création de sites web professionnels</p>
@@ -1422,10 +1564,11 @@
             </div>
 
             <nav class="footer-nav">
+                <a href="#qui-sommes-nous">Qui sommes-nous</a>
                 <a href="#about">À propos</a>
                 <a href="#services">Services</a>
                 <a href="#processus">Processus</a>
-                <a href="#portfolio">Réalisations</a>
+                <a href="#portfolio">Portfolio</a>
                 <a href="#avis">Avis</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -1468,11 +1611,6 @@
             });
         });
 
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Merci pour votre demande ! Nous vous répondrons sous 24h ouvrées.');
-            this.reset();
-        });
 
         window.addEventListener('scroll', function () {
             const header = document.querySelector('header');

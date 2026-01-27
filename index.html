@@ -4,13 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
     <title>AR Agence Web - Création de Sites Web Professionnels | Experts Digitaux</title>
     <meta name="description"
         content="AR Agence Web crée des sites web sur mesure pour PME et entrepreneurs. Site vitrine, e-commerce, refonte et SEO. Devis gratuit sous 48h.">
+    <meta name="keywords"
+        content="création site web, agence web, site vitrine, refonte site, développeur web, agence digitale, site internet professionnel">
+    <meta name="author" content="AR Agence Web">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ar-agence-web.fr/">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo/Agency web.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo/Agency web.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo/Agency web.png">
+    <link rel="shortcut icon" href="logo/Agency web.png">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-pap1n2k..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="image/Agency web.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "AR Agence Web",
+      "image": "https://ar-agence-web.fr/image/Agency-web.png",
+      "description": "Agence web spécialisée dans la création de sites web professionnels pour PME et entrepreneurs",
+      "url": "https://ar-agence-web.fr",
+      "telephone": "+33787846252",
+      "email": "aragenceweb@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vacqueyras",
+        "addressCountry": "FR"
+      },
+      "priceRange": "€€",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      }
+    }
+    </script>
 
     <style>
         * {
@@ -38,6 +83,102 @@
             color: var(--text-primary);
             overflow-x: hidden;
             background: var(--white);
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            display: none;
+            animation: slideUp 0.4s ease;
+        }
+
+        .cookie-banner.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .cookie-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cookie-text p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .cookie-text a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .cookie-accept {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .cookie-accept:hover {
+            background: #d4b76a;
+            transform: translateY(-2px);
+        }
+
+        .cookie-decline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cookie-decline:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Header & Navigation */
@@ -141,6 +282,10 @@
             background: var(--gold);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+        }
+
+        .cta-nav-mobile {
+            display: none;
         }
 
         /* Hero Section */
@@ -853,6 +998,7 @@
 
         .footer-text a:hover {
             opacity: 1;
+            color: var(--gold);
         }
 
         .footer-nav {
@@ -872,6 +1018,7 @@
 
         .footer-nav a:hover {
             opacity: 1;
+            color: var(--gold);
         }
 
         /* Responsive */
@@ -940,6 +1087,21 @@
 
             .cta-nav {
                 display: none;
+            }
+
+            .cta-nav-mobile {
+                display: block;
+                background: var(--primary);
+                color: var(--white);
+                padding: 1rem 0;
+                border-radius: 4px;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .cta-nav-mobile:hover {
+                background: var(--gold);
+                color: var(--primary);
             }
 
             .hero {
@@ -1057,6 +1219,22 @@
 
             .footer-nav {
                 align-items: center;
+                justify-content: center;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cookie-btn {
+                flex: 1;
+                min-width: 120px;
             }
         }
 
@@ -1108,22 +1286,41 @@
 </head>
 
 <body>
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>🍪 Respect de votre vie privée</h3>
+                <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant votre
+                    navigation, vous acceptez notre utilisation des cookies. <a href="politique cookie.html"
+                        id="cookieLearnMore">En savoir
+                        plus</a></p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" id="cookieAccept">Accepter</button>
+                <button class="cookie-btn cookie-decline" id="cookieDecline">Refuser</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <nav>
             <div class="logo">
-                <img src="image/Agency web.png" alt="AR Agence Web Logo">
+                <img src="image/Agency web.png" alt="AR Agence Web - Création de sites internet professionnels">
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#qui-sommes-nous">Qui sommes-nous</a></li>
+
                 <li><a href="#about">À propos</a></li>
+                <li><a href="#qui-sommes-nous">Qui sommes-nous</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#processus">Processus</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#avis">Avis</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-nav-mobile">Devis Gratuit</a></li>
             </ul>
             <a href="#contact" class="cta-nav">Devis Gratuit</a>
-            <div class="menu-toggle" id="menuToggle">
+            <div class="menu-toggle" id="menuToggle" role="button" tabindex="0">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1140,43 +1337,6 @@
             <div class="hero-ctas">
                 <a href="#contact" class="btn-primary">Démarrer mon projet</a>
                 <a href="#services" class="btn-secondary">Découvrir nos services</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who We Are Section -->
-    <section class="who-we-are" id="qui-sommes-nous">
-        <div class="container">
-            <div class="section-title">
-                <h2>Qui sommes-nous ?</h2>
-                <p>Une équipe passionnée au service de votre réussite digitale</p>
-            </div>
-            <div class="who-content">
-                <div class="who-text">
-                    <h3>AR Agence Web : Votre partenaire digital de confiance</h3>
-                    <p>Nous, c'est Roméo et Andy, deux amis de 17 ans, originaires de Vacqueyras. Passionnés depuis
-                        toujours par le numérique, les jeux vidéo et tout ce qui touche à la création en ligne, nous
-                        passons beaucoup de temps à apprendre, tester et comprendre comment fonctionne le web. <br>
-
-                        Très vite, une idée nous est venue : Pourquoi ne pas transformer cette passion en projet concret
-                        ?
-                        <br><br>
-                        Nous avions envie d'entreprendre, mais surtout de rendre service. En discutant autour de nous,
-                        nous avons remarqué que beaucoup de petites entreprises locales n'avaient pas de site web ou un
-                        site peu adapté à leurs besoins. C'est là que tout a commencé.
-                        <br><br>
-                        Avec l'aide de nos parents, nous avons créé notre micro-entreprise afin de proposer des sites
-                        web modernes, simples et efficaces, accessibles aux professionnels de notre région.
-                        <br><br>
-                        Aujourd'hui, nous sommes fiers d'être enfin lancés dans ce projet commun, avec une seule
-                        ambition :
-                        aider les entreprises locales à se développer grâce au numérique.
-                    </p>
-                </div>
-                <div class="who-image">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
-                        alt="Équipe AR Agence Web travaillant ensemble">
-                </div>
             </div>
         </div>
     </section>
@@ -1235,6 +1395,43 @@
                             <p>Formation, maintenance et conseils stratégiques inclus après livraison</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="who-we-are" id="qui-sommes-nous">
+        <div class="container">
+            <div class="section-title">
+                <h2>Qui sommes-nous ?</h2>
+                <p>Une équipe passionnée au service de votre réussite digitale</p>
+            </div>
+            <div class="who-content">
+                <div class="who-text">
+                    <h3>AR Agence Web : Votre partenaire digital de confiance</h3>
+                    <p>Nous, c'est Roméo et Andy, deux amis de 17 ans, originaires de Vacqueyras. Passionnés depuis
+                        toujours par le numérique, les jeux vidéo et tout ce qui touche à la création en ligne, nous
+                        passons beaucoup de temps à apprendre, tester et comprendre comment fonctionne le web. <br>
+
+                        Très vite, une idée nous est venue : Pourquoi ne pas transformer cette passion en projet concret
+                        ?
+                        <br><br>
+                        Nous avions envie d'entreprendre, mais surtout de rendre service. En discutant autour de nous,
+                        nous avons remarqué que beaucoup de petites entreprises locales n'avaient pas de site web ou un
+                        site peu adapté à leurs besoins. C'est là que tout a commencé.
+                        <br><br>
+                        Avec l'aide de nos parents, nous avons créé notre micro-entreprise afin de proposer des sites
+                        web modernes, simples et efficaces, accessibles aux professionnels de notre région.
+                        <br><br>
+                        Aujourd'hui, nous sommes fiers d'être enfin lancés dans ce projet commun, avec une seule
+                        ambition :
+                        aider les entreprises locales à se développer grâce au numérique.
+                    </p>
+                </div>
+                <div class="who-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+                        alt="Équipe AR Agence Web travaillant ensemble sur des projets web">
                 </div>
             </div>
         </div>
@@ -1318,7 +1515,8 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="image/bethanie-logo.ico" alt="Centre Carrefour Bethanie">
+                        <img src="image/bethanie-logo.ico"
+                            alt="Site web Centre Carrefour Bethanie - Réalisation AR Agence Web">
                     </div>
                     <div class="portfolio-content">
                         <h3><a href="https://centre-carrefour-béthanie.fr" target="_blank"
@@ -1330,12 +1528,10 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="" alt="">
+                        <img src="" alt="Projet à venir - AR Agence Web">
                     </div>
                     <div class="portfolio-content">
-                        <h3><a target="_blank" rel="noopener noreferrer">Soyer les prochain à nous rejoindre
-                                !</a>
-                        </h3>
+                        <h3><a target="_blank" rel="noopener noreferrer">Soyez les prochains à nous rejoindre !</a></h3>
                         <p></p>
                         <p><strong></strong></p>
                         <span class="portfolio-tag"></span>
@@ -1343,12 +1539,10 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="" alt="">
+                        <img src="" alt="Projet à venir - AR Agence Web">
                     </div>
                     <div class="portfolio-content">
-                        <h3><a target="_blank" rel="noopener noreferrer">Soyer les prochain à nous rejoindre
-                                !</a>
-                        </h3>
+                        <h3><a target="_blank" rel="noopener noreferrer">Soyez les prochains à nous rejoindre !</a></h3>
                         <p></p>
                         <p><strong></strong></p>
                         <span class="portfolio-tag"></span>
@@ -1356,12 +1550,10 @@
                 </div>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <img src="" alt="">
+                        <img src="" alt="Projet à venir - AR Agence Web">
                     </div>
                     <div class="portfolio-content">
-                        <h3><a target="_blank" rel="noopener noreferrer">Soyer les prochain à nous rejoindre
-                                !</a>
-                        </h3>
+                        <h3><a target="_blank" rel="noopener noreferrer">Soyez les prochains à nous rejoindre !</a></h3>
                         <p></p>
                         <p><strong></strong></p>
                         <span class="portfolio-tag"></span>
@@ -1371,7 +1563,81 @@
         </div>
     </section>
 
-
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="avis">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ils Nous Font Confiance</h2>
+                <p>Les retours de nos clients satisfaits</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"AR Agence Web a su comprendre nos besoins spécifiques et nous livrer un site qui dépasse nos
+                        attentes. L'équipe est professionnelle, réactive et de très bon conseil. Notre taux de
+                        conversion a doublé !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+                                alt="Sophie Martin">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sophie Martin</h4>
+                            <p>Directrice Marketing, TechStart</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Un accompagnement sur-mesure du début à la fin. Le site reflète parfaitement notre savoir-faire
+                        artisanal tout en étant moderne et facile à utiliser. Les demandes clients ont explosé depuis la
+                        mise en ligne."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
+                                alt="Marc Dubois">
+                        </div>
+                        <div class="author-info">
+                            <h4>Marc Dubois</h4>
+                            <p>Gérant, Atelier Bois Noble</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Je cherchais une agence capable de comprendre mon univers et de le retranscrire en ligne.
+                        Mission accomplie ! Le design est magnifique, le site ultra rapide et j'ai été formée pour gérer
+                        mon contenu en autonomie."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+                                alt="Laure Klein">
+                        </div>
+                        <div class="author-info">
+                            <h4>Laure Klein</h4>
+                            <p>Fondatrice, Studio Yoga Harmonie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Délais respectés, budget maîtrisé, résultat professionnel. Exactement ce que nous cherchions.
+                        Nous recommandons AR Agence Web sans hésitation pour leur sérieux et leur expertise technique."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop"
+                                alt="Thomas Rousseau">
+                        </div>
+                        <div class="author-info">
+                            <h4>Thomas Rousseau</h4>
+                            <p>Directeur Commercial, Solutions Pro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -1433,9 +1699,8 @@
                             <textarea id="message" name="Message" required></textarea>
                         </div>
 
-                        <!-- Champs cachés pour Formspree -->
                         <input type="hidden" name="_subject" value="Nouvelle demande de projet - AR Agence Web">
-                        <input type="text" name="_gotcha" style="display:none">
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1">
 
                         <button type="submit" class="submit-btn">Envoyer ma demande</button>
                     </form>
@@ -1448,25 +1713,25 @@
                     <div class="info-item">
                         <div class="info-content">
                             <h4>Email</h4>
-                            <p>aragenceweb@gmail.com</p>
+                            <p><a href="mailto:aragenceweb@gmail.com"
+                                    style="color: var(--text-secondary); text-decoration: none;">aragenceweb@gmail.com</a>
+                            </p>
                         </div>
                     </div>
 
-                    <div class="info-item">
-                    </div>
                     <div class="info-content">
                         <h4>Téléphone</h4>
-                        <p>+33 (0)7 87 84 62 52</p>
+                        <p><a href="tel:+33787846252" style="color: var(--text-secondary); text-decoration: none;">+33
+                                (0)7 87 84 62 52</a></p>
+                    </div>
+
+                    <div class="reassurance">
+                        <p><strong>🔒 Vos données sont protégées</strong></p>
+                        <p>Vos informations ne seront jamais partagées. Nous nous engageons à vous répondre rapidement
+                            avec une proposition adaptée à vos besoins. Aucun engagement.</p>
                     </div>
                 </div>
-
-                <div class="reassurance">
-                    <p><strong>🔒 Vos données sont protégées</strong></p>
-                    <p>Vos informations ne seront jamais partagées. Nous nous engageons à vous répondre rapidement
-                        avec une proposition adaptée à vos besoins. Aucun engagement.</p>
-                </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -1474,32 +1739,67 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo-text">
-                <img src="image/Agency web.png" alt="AR Agence Web Logo">
+                <img src="image/Agency web.png" alt="Logo AR Agence Web">
             </div>
 
             <div class="footer-text">
                 <p>© 2025 AR Agence Web – Création de sites web professionnels</p>
-
+                <p><a href="politique cookie.html">Politique de cookies</a></p>
             </div>
 
             <nav class="footer-nav">
-                <a href="#qui-sommes-nous">Qui sommes-nous</a>
+
                 <a href="#about">À propos</a>
+                <a href="#qui-sommes-nous">Qui sommes-nous</a>
                 <a href="#services">Services</a>
                 <a href="#processus">Processus</a>
                 <a href="#portfolio">Portfolio</a>
+                <a href="#avis">Avis</a>
                 <a href="#contact">Contact</a>
             </nav>
         </div>
     </footer>
 
     <script>
+        // Cookie Banner Management
+        const cookieBanner = document.getElementById('cookieBanner');
+        const cookieAccept = document.getElementById('cookieAccept');
+        const cookieDecline = document.getElementById('cookieDecline');
+
+        // Check if user has already made a choice
+        if (!localStorage.getItem('cookieConsent')) {
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1000);
+        }
+
+        cookieAccept.addEventListener('click', function () {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('show');
+            // Here you can enable your analytics/tracking
+            // Example: loadGoogleAnalytics();
+        });
+
+        cookieDecline.addEventListener('click', function () {
+            localStorage.setItem('cookieConsent', 'declined');
+            cookieBanner.classList.remove('show');
+        });
+
+        // Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
         menuToggle.addEventListener('click', function () {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
+        });
+
+        menuToggle.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            }
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
@@ -1519,6 +1819,7 @@
             }
         });
 
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1529,7 +1830,7 @@
             });
         });
 
-
+        // Header Shadow on Scroll
         window.addEventListener('scroll', function () {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {

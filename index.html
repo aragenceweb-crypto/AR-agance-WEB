@@ -1486,6 +1486,14 @@
         </div>
     </section>
 
+    <!-- bouton retour haut  -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"
+        style="position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;background:var(--primary);color:var(--white);border:none;border-radius:8px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:999;">
+        <svg width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </button>
 
     <!-- À PROPOS -->
     <section class="about" id="about">
@@ -1562,7 +1570,7 @@
                 <div class="who-text">
                     <h3>AR Agence Web : Votre partenaire digital de confiance</h3>
                     <p>
-                        Nous, c'est Roméo et Andy, deux amis de 17 ans, originaires de Vacqueyras. Passionnés depuis
+                        Nous, c'est Roméo et Andy, deux amis de 18 ans, originaires de Vacqueyras. Passionnés depuis
                         toujours par le numérique, les jeux vidéo et tout ce qui touche à la création en ligne, nous
                         passons beaucoup de temps à apprendre, tester et comprendre comment fonctionne le web.
                         <br><br>
@@ -1824,13 +1832,23 @@
                         </div>
                         <div class="form-group">
                             <label for="budget">Budget estimé (Optionnel)</label>
-                            <select id="budget" name="Budget estimé">
+                            <select id="budget" name="Budget estimé" onchange="toggleCustomBudget(this)">
                                 <option value="">Sélectionnez...</option>
-                                <option value="Moins de 800€">Moins de 800€</option>
-                                <option value="900€ - 1500€">900€ - 1500€</option>
+                                <option value="Moins de 700€">Moins de 700€</option>
+                                <option value="700€ - 1500€">700€ - 1500€</option>
                                 <option value="1600€ - 2000€">1600€ - 2000€</option>
                                 <option value="Plus de 2000€">Plus de 2000€</option>
+                                <option value="custom">Choisir un montant</option>
                             </select>
+                            <div id="customBudgetWrapper" style="display:none; margin-top:8px;">
+                                <label for="customBudget" style="font-size:13px; color:var(--text-secondary);">Indiquez
+                                    votre budget</label>
+                                <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+                                    <input type="number" id="customBudget" name="Budget personnalisé" min="0" step="50"
+                                        placeholder="ex: 1200" style="flex:1;">
+                                    <span style="color:var(--text-secondary);">€</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="message">Décrivez votre projet *</label>
@@ -1973,6 +1991,30 @@
             header.style.boxShadow = window.scrollY > 50
                 ? '0 4px 20px rgba(0, 0, 0, 0.1)'
                 : '0 2px 10px rgba(0, 0, 0, 0.05)';
+        });
+        function toggleCustomBudget(sel) {
+            const wrapper = document.getElementById('customBudgetWrapper');
+            const customInput = document.getElementById('customBudget');
+            if (sel.value === 'custom') {
+                wrapper.style.display = 'block';
+                customInput.focus();
+            } else {
+                wrapper.style.display = 'none';
+                customInput.value = '';
+            }
+        }
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        });
+        backToTop.addEventListener('mouseenter', function () {
+            this.style.background = 'var(--gold)';
+            this.style.transform = 'translateY(-3px)';
+        });
+        backToTop.addEventListener('mouseleave', function () {
+            this.style.background = 'var(--primary)';
+            this.style.transform = 'translateY(0)';
         });
     </script>
 

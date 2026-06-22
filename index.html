@@ -203,6 +203,12 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        header.visible {
+            transform: translateY(0);
         }
 
         nav {
@@ -291,23 +297,50 @@
         ============================================================ */
 
         .hero {
-            background: linear-gradient(to bottom, var(--white) 0%, var(--light) 100%);
-            color: var(--text-primary);
-            padding: 180px 2rem 120px;
+            background: #000;
+            color: var(--white);
+            min-height: 100vh;
+            padding: 100px 2rem 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid var(--border);
         }
 
-        .hero::before {
-            content: '';
+        /* Animation "Background Paths" en arrière-plan du hero */
+        .hero-paths {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201, 169, 97, 0.08), transparent);
-            top: -300px;
-            right: -300px;
-            border-radius: 50%;
+            inset: 0;
+            z-index: 0;
+            color: var(--white);
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-paths svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-paths path {
+            fill: none;
+            stroke: currentColor;
+            stroke-dasharray: 0.55 0.45;
+        }
+
+        @keyframes heroPathFlow {
+            to {
+                stroke-dashoffset: -1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-paths path {
+                animation: none !important;
+            }
         }
 
         .hero-content {
@@ -323,15 +356,36 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            color: var(--primary);
+            color: var(--white);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
         }
 
         .hero p {
             font-size: 1.25rem;
             max-width: 800px;
             margin: 0 auto 2.5rem;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
+            text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .btn-primary {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .hero .btn-primary:hover {
+            background: #d4b76a;
+        }
+
+        .hero .btn-secondary {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .hero .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
         }
 
         .hero-ctas {
@@ -427,15 +481,21 @@
 
         .who-image {
             position: relative;
-            border-radius: 8px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
+            border: 1px solid var(--border);
         }
 
         .who-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .who-image:hover img {
+            transform: scale(1.05);
         }
 
         .who-text h3 {
@@ -456,6 +516,10 @@
         ============================================================ */
 
         .about {
+            background: var(--light);
+        }
+
+        .applications {
             background: var(--light);
         }
 
@@ -487,24 +551,65 @@
         .benefit-item {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s;
+            gap: 1.2rem;
+            background: linear-gradient(180deg, var(--white), var(--light));
+            padding: 1.5rem 1.6rem;
+            border-radius: 16px;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        /* Liseré d'accent doré révélé au survol (inspiration 21st.dev) */
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
 
         .benefit-item:hover {
-            transform: translateX(8px);
+            transform: translateY(-5px);
             border-color: var(--gold);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 18px 40px rgba(201, 169, 97, 0.16),
+                0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
         }
 
         .benefit-icon {
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: var(--gold);
-            font-size: 1.5rem;
+            border-radius: 13px;
+            font-size: 1.3rem;
             font-weight: bold;
+            box-shadow: 0 6px 16px rgba(26, 26, 46, 0.18);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .benefit-item:hover .benefit-icon {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .benefit-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
         }
 
 
@@ -519,31 +624,57 @@
         }
 
         .service-card {
-            background: var(--white);
+            background: linear-gradient(180deg, var(--white), var(--light));
             padding: 2.5rem;
-            border-radius: 8px;
+            border-radius: 16px;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12),
+                0 6px 16px rgba(201, 169, 97, 0.12);
             border-color: var(--gold);
         }
 
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
         .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 8px;
+            width: 62px;
+            height: 62px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(26, 26, 46, 0.2);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.08) rotate(-4deg);
         }
 
         .service-icon svg {
@@ -602,11 +733,12 @@
         }
 
         .ai-card {
-            background: var(--light);
+            background: linear-gradient(180deg, var(--white), var(--light));
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2.5rem 2rem;
-            transition: all 0.3s;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
             position: relative;
             overflow: hidden;
         }
@@ -624,8 +756,9 @@
         }
 
         .ai-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12),
+                0 6px 16px rgba(201, 169, 97, 0.12);
             border-color: var(--gold);
         }
 
@@ -636,13 +769,19 @@
         .ai-card-icon {
             width: 56px;
             height: 56px;
-            background: var(--primary);
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
             color: white;
+            box-shadow: 0 8px 20px rgba(26, 26, 46, 0.2);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .ai-card:hover .ai-card-icon {
+            transform: scale(1.08) rotate(-4deg);
         }
 
         .ai-card-icon svg {
@@ -757,21 +896,38 @@
 
         .step {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(201, 169, 97, 0.4);
         }
 
         .step-number {
             width: 80px;
             height: 80px;
-            background: var(--gold);
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--gold), #e0caa0);
+            color: var(--primary);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             font-weight: 700;
             margin: 0 auto 1.5rem;
-            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+            box-shadow: 0 10px 24px rgba(201, 169, 97, 0.35);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.08) rotate(-4deg);
         }
 
         .step h3 {
@@ -792,17 +948,27 @@
 
         .portfolio-item {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease, border-color 0.35s ease;
             border: 1px solid var(--border);
         }
 
+        .portfolio-item img {
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
         .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14),
+                0 6px 16px rgba(201, 169, 97, 0.12);
             border-color: var(--gold);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.06);
         }
 
         .portfolio-content {
@@ -853,11 +1019,20 @@
         }
 
         .testimonial {
-            background: var(--white);
+            background: linear-gradient(180deg, var(--white), var(--light));
             padding: 2.5rem;
-            border-radius: 8px;
+            border-radius: 16px;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--border);
+            border-left: 4px solid var(--gold);
+            position: relative;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
         }
 
         .stars {
@@ -945,6 +1120,18 @@
             align-items: center;
             gap: 0.8rem;
             font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.85rem 1.4rem;
+            border-radius: 12px;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .cta-benefit:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(201, 169, 97, 0.5);
         }
 
 
@@ -983,13 +1170,14 @@
         .info-icon {
             width: 46px;
             height: 46px;
-            background: var(--primary);
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             color: #ffffff;
+            box-shadow: 0 6px 16px rgba(26, 26, 46, 0.18);
         }
 
         .info-content h4 {
@@ -1395,6 +1583,16 @@
                 <line x1="8" y1="21" x2="16" y2="21" />
                 <line x1="12" y1="17" x2="12" y2="21" />
             </symbol>
+            <symbol id="ico-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2.5" ry="2.5" />
+                <line x1="10" y1="18.5" x2="14" y2="18.5" />
+            </symbol>
+            <symbol id="ico-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+            </symbol>
             <symbol id="ico-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                 stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="1 4 1 10 7 10" />
@@ -1437,7 +1635,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#qui-sommes-nous">Qui sommes-nous</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#services">Sites web</a></li>
+                <li><a href="#applications">Applications</a></li>
                 <li><a href="#agents-ia">Agents IA</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#avis">Avis</a></li>
@@ -1456,6 +1655,7 @@
 
     <!-- HERO -->
     <section class="hero">
+        <div class="hero-paths" id="heroPaths"></div>
         <div class="hero-content">
             <h1>Votre présence digitale mérite mieux qu'un site ordinaire</h1>
             <p>
@@ -1611,6 +1811,56 @@
                         référencement et en améliorant drastiquement l'expérience utilisateur.</p>
                     <span class="service-tag">Modernisation · Rebranding</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CRÉATION D'APPLICATION PERSONNALISÉE -->
+    <section class="applications" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Création d'Applications Web sur Mesure</h2>
+                <p>Au-delà du site web, nous développons de petites applications web simples, accessibles
+                    directement depuis un navigateur, pour vous aider à gérer et simplifier votre quotidien.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <use href="#ico-monitor" />
+                        </svg>
+                    </div>
+                    <h3>Application Web Simple</h3>
+                    <p>Un petit outil accessible depuis votre navigateur, conçu pour un besoin précis :
+                        réservation, formulaire avancé ou mini-espace de gestion.</p>
+                    <span class="service-tag">Sur navigateur · Sur mesure</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <use href="#ico-settings" />
+                        </svg>
+                    </div>
+                    <h3>Outil de Gestion</h3>
+                    <p>Gérez plus facilement votre activité : suivi de stock, de devis ou de clients, dans une
+                        interface claire et adaptée à votre fonctionnement.</p>
+                    <span class="service-tag">Gestion · Suivi</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <use href="#ico-zap" />
+                        </svg>
+                    </div>
+                    <h3>Automatisation Simple</h3>
+                    <p>Automatisez des tâches répétitives et simples du quotidien pour gagner du temps et éviter
+                        les oublis.</p>
+                    <span class="service-tag">Gain de temps</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#contact" class="btn-primary">Discuter de mon projet d'application →</a>
             </div>
         </div>
     </section>
@@ -1950,7 +2200,8 @@
             <nav class="footer-nav">
                 <a href="#about">À propos</a>
                 <a href="#qui-sommes-nous">Qui sommes-nous</a>
-                <a href="#services">Services</a>
+                <a href="#services">Sites web</a>
+                <a href="#applications">Applications</a>
                 <a href="#agents-ia">Agents IA</a>
                 <a href="#processus">Processus</a>
                 <a href="#portfolio">Portfolio</a>
@@ -2002,12 +2253,18 @@
             });
         });
 
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('header');
-            header.style.boxShadow = window.scrollY > 50
-                ? '0 4px 20px rgba(0, 0, 0, 0.1)'
-                : '0 2px 10px rgba(0, 0, 0, 0.05)';
-        });
+        const siteHeader = document.querySelector('header');
+        function updateHeader() {
+            if (window.scrollY > 80) {
+                siteHeader.classList.add('visible');
+                siteHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                siteHeader.classList.remove('visible');
+                siteHeader.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        }
+        window.addEventListener('scroll', updateHeader);
+        updateHeader();
 
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', function () {
@@ -2021,6 +2278,62 @@
             this.style.background = 'var(--primary)';
             this.style.transform = 'translateY(0)';
         });
+    </script>
+
+
+    <!-- ANIMATION "BACKGROUND PATHS" EN ARRIÈRE-PLAN DU HERO -->
+    <script>
+        (function () {
+            const container = document.getElementById('heroPaths');
+            if (!container) return;
+
+            const NS = 'http://www.w3.org/2000/svg';
+            const PATH_COUNT = 64;   // nb de courbes par sens
+            const SPREAD_X = 11;     // étalement horizontal (éventail)
+            const SPREAD_Y = 15;     // étalement vertical -> couvre toute la hauteur
+
+            function buildLayer(position) {
+                const svg = document.createElementNS(NS, 'svg');
+                svg.setAttribute('viewBox', '0 0 696 316');
+                svg.setAttribute('fill', 'none');
+                svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+                svg.setAttribute('aria-hidden', 'true');
+
+                for (let i = 0; i < PATH_COUNT; i++) {
+                    const sx = i * SPREAD_X * position;
+                    const sy = i * SPREAD_Y;
+
+                    // Points de la courbe (coordonnées calculées -> gère les valeurs négatives)
+                    const x0 = -(380 - sx), y0 = -(189 + sy);
+                    const x1 = -(312 - sx), y1 = (216 - sy);
+                    const x2 = (152 - sx), y2 = (343 - sy);
+                    const x3 = (616 - sx), y3 = (470 - sy);
+                    const x4 = (684 - sx), y4 = (875 - sy);
+
+                    const d = 'M' + x0 + ' ' + y0 +
+                        'C' + x0 + ' ' + y0 + ' ' + x1 + ' ' + y1 + ' ' + x2 + ' ' + y2 +
+                        'C' + x3 + ' ' + y3 + ' ' + x4 + ' ' + y4 + ' ' + x4 + ' ' + y4;
+
+                    const path = document.createElementNS(NS, 'path');
+                    path.setAttribute('d', d);
+                    path.setAttribute('pathLength', '1');
+                    path.setAttribute('stroke', 'currentColor');
+                    path.setAttribute('stroke-width', (0.5 + (i / PATH_COUNT) * 1.2).toFixed(2));
+                    path.setAttribute('stroke-opacity', (0.12 + (i / PATH_COUNT) * 0.5).toFixed(2));
+
+                    // Chaque courbe ondule à sa propre vitesse, dans un sens donné
+                    const duration = (20 + Math.random() * 10).toFixed(1);
+                    path.style.animation = 'heroPathFlow ' + duration + 's linear infinite';
+                    path.style.animationDirection = position > 0 ? 'normal' : 'reverse';
+
+                    svg.appendChild(path);
+                }
+                return svg;
+            }
+
+            container.appendChild(buildLayer(1));
+            container.appendChild(buildLayer(-1));
+        })();
     </script>
 
 </body>

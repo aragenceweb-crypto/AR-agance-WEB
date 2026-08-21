@@ -227,7 +227,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -236,7 +236,8 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -279,6 +280,8 @@
             font-weight: 600;
             transition: all 0.3s;
             font-size: 0.9rem;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .cta-nav:hover {
@@ -1225,8 +1228,9 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
+            gap: 2.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -1234,6 +1238,7 @@
         .footer-logo-text img {
             height: 100px;
             width: auto;
+            display: block;
         }
 
         .footer-text {
@@ -1258,11 +1263,10 @@
         }
 
         .footer-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 20px;
-            justify-content: flex-end;
-            max-width: 400px;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 12px 36px;
+            justify-content: end;
         }
 
         .footer-nav a {
@@ -1270,6 +1274,7 @@
             text-decoration: none;
             font-size: 14px;
             opacity: 0.8;
+            white-space: nowrap;
         }
 
         .footer-nav a:hover {
@@ -1304,6 +1309,31 @@
 
 
         /* ============================================================
+           RESPONSIVE — PETIT DESKTOP / TABLETTE PAYSAGE (max 1100px)
+        ============================================================ */
+
+        @media (max-width: 1100px) and (min-width: 769px) {
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.82rem;
+            }
+
+            .cta-nav {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.82rem;
+            }
+
+            .logo img {
+                height: 42px;
+            }
+        }
+
+
+        /* ============================================================
            RESPONSIVE — MOBILE (max 768px)
         ============================================================ */
 
@@ -1321,11 +1351,13 @@
                 height: calc(100vh - 73px);
                 background: var(--white);
                 flex-direction: column;
-                padding: 2rem;
+                padding: 1.5rem 2rem;
                 gap: 0;
                 transition: left 0.3s ease;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 z-index: 999;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .nav-links.active {
@@ -1335,12 +1367,13 @@
             .nav-links li {
                 width: 100%;
                 border-bottom: 1px solid var(--border);
+                flex-shrink: 0;
             }
 
             .nav-links a {
                 display: block;
-                padding: 1.2rem 0;
-                font-size: 1.1rem;
+                padding: 0.9rem 0;
+                font-size: 1.05rem;
             }
 
             .menu-toggle {
@@ -1354,7 +1387,7 @@
             .cta-nav-mobile {
                 display: block;
                 background: var(--primary);
-                color: var(--white);
+                color: var(--white) !important;
                 padding: 1rem 0;
                 border-radius: 4px;
                 text-align: center;
@@ -1412,18 +1445,33 @@
             }
 
             .process-steps {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .step {
-                padding: 1.5rem;
+                padding: 1.3rem 1rem;
             }
 
             .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                margin: 0 auto 1rem;
+            }
+
+            .step h3 {
+                font-size: 1.05rem;
+            }
+
+            .step p {
+                font-size: 0.85rem;
+            }
+
+            .step:nth-child(5) {
+                grid-column: 1 / -1;
+                max-width: 47%;
+                margin: 0 auto;
             }
 
             .ai-use-cases {
@@ -1461,18 +1509,28 @@
             }
 
             .footer {
-                padding: 2rem 1.5rem 1.5rem;
+                padding: 2.5rem 1.5rem 5rem;
             }
 
             .footer-content {
-                flex-direction: column;
-                gap: 2rem;
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
                 text-align: center;
             }
 
+            .footer-logo-text img {
+                height: 70px;
+                margin: 0 auto;
+            }
+
             .footer-nav {
-                align-items: center;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 160px));
+                gap: 0.9rem 2rem;
+                max-width: 340px;
+                margin: 0 auto;
                 justify-content: center;
+                text-align: left;
             }
 
             .cookie-content {
@@ -1488,6 +1546,78 @@
             .cookie-btn {
                 flex: 1;
                 min-width: 120px;
+            }
+
+            /* Notre Mission — 5 cartes en 2 / 2 / 1 */
+            .benefits {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 1.3rem 1rem;
+                gap: 0.7rem;
+            }
+
+            .benefit-item h4 {
+                font-size: 0.95rem;
+            }
+
+            .benefit-item p {
+                font-size: 0.85rem;
+            }
+
+            .benefit-item:nth-child(5) {
+                grid-column: 1 / -1;
+                max-width: 47%;
+                margin: 0 auto;
+            }
+
+            /* Nos Services / Applications — cartes 2 par 2 */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+
+            .service-card {
+                padding: 1.4rem 1.1rem;
+            }
+
+            .service-icon {
+                width: 46px;
+                height: 46px;
+                margin-bottom: 1rem;
+            }
+
+            .service-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .service-card h3 {
+                font-size: 1.05rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .service-card p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 0.8rem;
+            }
+
+            .service-tag {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.7rem;
+            }
+
+            /* La 3e carte d'Applications (impaire) se centre sous les 2 autres */
+            .applications .services-grid .service-card:nth-child(3) {
+                grid-column: 1 / -1;
+                max-width: 47%;
+                margin: 0 auto;
             }
         }
 
@@ -1523,15 +1653,76 @@
             }
 
             .process-steps {
-                gap: 1rem;
+                gap: 0.7rem;
             }
 
             .step {
-                padding: 1rem;
+                padding: 0.9rem 0.6rem;
+            }
+
+            .step-number {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+
+            .step h3 {
+                font-size: 0.95rem;
+            }
+
+            .step p {
+                font-size: 0.8rem;
+            }
+
+            .step:nth-child(5) {
+                max-width: 60%;
             }
 
             .cta-section h2 {
                 font-size: 1.75rem;
+            }
+
+            .benefits {
+                gap: 0.7rem;
+            }
+
+            .benefit-item {
+                padding: 1rem 0.7rem;
+            }
+
+            .benefit-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+
+            .benefit-item:nth-child(5) {
+                max-width: 60%;
+            }
+
+            .services-grid {
+                gap: 0.8rem;
+            }
+
+            .service-card {
+                padding: 1.1rem 0.8rem;
+            }
+
+            .service-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .service-card p {
+                font-size: 0.8rem;
+            }
+
+            .applications .services-grid .service-card:nth-child(3) {
+                max-width: 60%;
+            }
+
+            .footer-nav {
+                grid-template-columns: repeat(2, minmax(0, 130px));
+                gap: 0.8rem 1.2rem;
             }
         }
     </style>
@@ -1638,6 +1829,7 @@
                 <li><a href="#services">Sites web</a></li>
                 <li><a href="#applications">Applications</a></li>
                 <li><a href="#agents-ia">Agents IA</a></li>
+                <li><a href="#processus">Processus</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#avis">Avis</a></li>
                 <li><a href="#contact">Contact</a></li>

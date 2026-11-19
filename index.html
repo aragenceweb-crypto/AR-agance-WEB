@@ -2,6 +2,13 @@
 <html lang="fr">
 
 <head>
+    <!-- police animation -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -218,6 +225,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        header .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            color: var(--primary);
+            text-shadow: none;
+            line-height: 1;
         }
 
         .logo img {
@@ -1725,11 +1741,492 @@
                 gap: 0.8rem 1.2rem;
             }
         }
+
+        /* ============================================================
+           style animation
+        ============================================================ */
+        /* =========================
+   INTRO AR AGENCE WEB
+========================= */
+
+        .intro {
+            position: fixed;
+            inset: 0;
+
+            background: #050507;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 99999;
+
+            animation: introDisappear 1.2s ease 3s forwards;
+        }
+
+        .intro-content {
+            text-align: center;
+
+            animation: logoAppear 1.5s ease forwards;
+        }
+
+        .intro .logo {
+            font-family: 'Poppins', sans-serif;
+
+            font-size: clamp(45px, 8vw, 100px);
+            font-weight: 800;
+
+            letter-spacing: -4px;
+
+            color: white;
+
+            text-shadow:
+                0 0 20px rgba(139, 92, 246, 0.4),
+                0 0 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .intro .logo span {
+            font-weight: 400;
+            color: #8b5cf6;
+        }
+
+        .intro-line {
+            width: 0;
+            height: 2px;
+
+            background: #8b5cf6;
+
+            margin: 20px auto;
+
+            animation: lineAppear 1s ease 1s forwards;
+        }
+
+        .intro-text {
+            opacity: 0;
+
+            color: #aaa;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 14px;
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            animation: textAppear 1s ease 1.4s forwards;
+        }
+
+
+        /* Apparition du logo */
+
+        @keyframes logoAppear {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.6);
+                filter: blur(20px);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.05);
+                filter: blur(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        /* Ligne */
+
+        @keyframes lineAppear {
+
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 180px;
+            }
+        }
+
+
+        /* Texte */
+
+        @keyframes textAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Disparition de l'écran */
+
+        @keyframes introDisappear {
+
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        /* ============================================================
+           AMÉLIORATIONS DE STYLE (même charte : bleu nuit + or)
+        ============================================================ */
+
+        html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 80px; }
+        ::selection { background: var(--gold); color: var(--primary); }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+        a:focus-visible, button:focus-visible, .menu-toggle:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* En-tête translucide */
+        header {
+            background: rgba(255, 255, 255, 0.88);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            backdrop-filter: blur(14px) saturate(160%);
+        }
+
+        .nav-links a { position: relative; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -4px;
+            width: 0; height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .cta-nav-mobile::after { display: none; }
+
+        /* Boutons plus modernes */
+        .btn-primary, .btn-secondary, .cta-nav, .ai-cta-btn, .cookie-btn {
+            border-radius: 10px;
+        }
+        .btn-primary, .ai-cta-btn { letter-spacing: 0.01em; }
+
+        /* Hero : halo doré + titre avec dégradé */
+        .hero {
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201, 169, 97, 0.16), transparent 70%),
+                radial-gradient(ellipse 50% 40% at 85% 100%, rgba(15, 52, 96, 0.55), transparent 70%),
+                #000;
+        }
+        .hero h1 {
+            background: linear-gradient(180deg, #ffffff 40%, #e9d9b0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.55));
+        }
+
+        /* Titres de section avec filet doré */
+        .section-title h2 { position: relative; padding-bottom: 1.2rem; }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%; bottom: 0;
+            width: 64px; height: 4px;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--gold), #e9d9b0);
+        }
+
+        /* Alternance de fonds plus douce */
+        .services { background: var(--white); }
+        .portfolio { background: var(--white); }
+        .about, .applications, .testimonials, .contact {
+            background: linear-gradient(180deg, #f8f9fa 0%, #f1f4f8 100%);
+        }
+
+        /* Cartes : ombre plus douce, coins plus ronds */
+        .service-card, .ai-card, .testimonial, .portfolio-item, .benefit-item {
+            border-radius: 20px;
+        }
+        .service-tag, .portfolio-tag {
+            border-radius: 999px;
+            background: rgba(201, 169, 97, 0.12);
+            border-color: rgba(201, 169, 97, 0.35);
+            color: var(--primary);
+        }
+        .ai-highlight {
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(26, 26, 46, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-highlight::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.25), transparent 70%);
+            pointer-events: none;
+        }
+        .ai-highlight > * { position: relative; }
+
+        .process {
+            background:
+                radial-gradient(ellipse 50% 60% at 50% 0%, rgba(201, 169, 97, 0.10), transparent 70%),
+                var(--primary);
+        }
+        .cta-section {
+            background:
+                radial-gradient(ellipse 60% 70% at 50% 100%, rgba(201, 169, 97, 0.14), transparent 70%),
+                linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .who-image { border-radius: 24px; }
+        .reassurance { border-radius: 16px; background: var(--white); }
+
+        /* ============================================================
+           FORMULAIRE : carte propre + correction du bouton coupé
+        ============================================================ */
+
+        .contact-container > * { min-width: 0; }
+
+        .form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 18px 45px rgba(26, 26, 46, 0.08);
+        }
+
+        /* Le recadrage masque le badge Tally en bas SANS recouvrir le bouton */
+        .form-clip {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .form-clip::after {
+            content: "";
+            position: absolute;
+            right: 0; bottom: 0;
+            width: max(0px, calc(100% - 228px)); height: 64px;
+            background: var(--white);
+            pointer-events: none;
+        }
+        .form-clip iframe {
+            display: block;
+            width: 100%;
+            min-height: 520px;
+            border: 0;
+            margin: 0;
+        }
+
+        .contact-info { min-width: 0; }
+        .contact-info a { overflow-wrap: anywhere; }
+
+        /* ============================================================
+           Apparition douce au scroll
+        ============================================================ */
+        .js-reveal .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .js-reveal .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            section[id] { scroll-margin-top: 70px; }
+            .form-card { padding: 0.8rem; border-radius: 16px; }
+            .form-clip iframe { min-height: 520px; }
+            .section-title { margin-bottom: 2.5rem; }
+            .ai-highlight { border-radius: 18px; }
+        }
+
+        /* ============================================================
+           LOGO DE REPLI, EFFET HERO, RESPONSIVE PROPRE
+        ============================================================ */
+
+        .logo-fallback {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+        .logo-fallback b { font-weight: 500; color: var(--gold); }
+
+        /* Hero : lignes plus fines, plus lentes, estompées derrière le texte */
+        .hero-paths {
+            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 0, 0, 0.25) 0%, #000 100%);
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 0, 0, 0.25) 0%, #000 100%);
+        }
+
+        /* Cartes alignées : étiquettes toujours en bas, hauteurs égales */
+        .service-card { display: flex; flex-direction: column; }
+        .service-card .service-tag { margin-top: auto; align-self: flex-start; }
+        .service-tag { border-radius: 12px; line-height: 1.4; }
+        .services-grid, .ai-use-cases { align-items: stretch; }
+
+        @media (max-width: 768px) {
+
+            .benefits { grid-template-columns: 1fr; gap: 0.9rem; }
+            .benefit-item,
+            .benefit-item:nth-child(5) {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                max-width: none;
+                margin: 0;
+                padding: 1.1rem 1.2rem;
+                gap: 1rem;
+            }
+            .benefit-icon { width: 42px; height: 42px; font-size: 1.15rem; }
+            .benefit-item h4 { font-size: 1rem; }
+            .benefit-item p { font-size: 0.9rem; }
+
+            .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .applications .services-grid .service-card:nth-child(3) {
+                grid-column: auto;
+                max-width: none;
+                margin: 0;
+            }
+            .service-card { padding: 1.5rem 1.3rem; }
+            .service-icon { width: 50px; height: 50px; }
+            .service-card h3 { font-size: 1.15rem; }
+            .service-card p { font-size: 0.92rem; line-height: 1.6; }
+            .service-tag { font-size: 0.78rem; padding: 0.4rem 0.9rem; }
+
+            .process-steps { grid-template-columns: 1fr; gap: 0.9rem; }
+            .step,
+            .step:nth-child(5) {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                column-gap: 1rem;
+                align-items: start;
+                text-align: left;
+                max-width: none;
+                margin: 0;
+                padding: 1.2rem;
+            }
+            .step-number {
+                grid-row: 1 / span 2;
+                width: 48px; height: 48px;
+                font-size: 1.2rem;
+                border-radius: 14px;
+                margin: 0;
+            }
+            .step h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+            .step p { font-size: 0.9rem; }
+
+            .cta-benefits { align-items: stretch; }
+            .cta-benefit { width: 100%; font-size: 0.98rem; }
+
+            .contact { padding: 60px 1rem; }
+            .form-card { padding: 0.6rem; }
+        }
+
+        /* ============================================================
+           LOGO : mêmes couleurs que l'animation de lancement (blanc + violet)
+        ============================================================ */
+
+        :root { --logo-violet: #8b5cf6; }
+
+        .brand {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.3em;
+            text-decoration: none;
+            line-height: 1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: -0.04em;
+            white-space: nowrap;
+        }
+
+        .brand-ar {
+            font-weight: 800;
+            color: #050507;
+        }
+
+        .brand-agence {
+            font-weight: 400;
+            color: var(--logo-violet);
+        }
+
+        /* Pied de page (fond sombre) : AR reste blanc */
+        .footer .brand-ar { color: #ffffff; }
+
+        .footer .brand { font-size: 1.8rem; }
+
+        section[id] { scroll-margin-top: 88px; }
+
+        /* ============================================================
+           MENU MOBILE : hauteur d'en-tête fixe -> plus de décalage
+        ============================================================ */
+        @media (max-width: 768px) {
+            nav {
+                height: 68px;
+                padding: 0 1.25rem;
+            }
+
+            .nav-links {
+                top: 68px;
+                height: calc(100vh - 68px);
+                height: calc(100dvh - 68px);
+            }
+
+            section[id] { scroll-margin-top: 72px; }
+
+            header .brand { font-size: 1.3rem; }
+
+            .footer-logo-text { display: flex; justify-content: center; }
+        }
+
     </style>
 </head>
 
 <body>
+    <!-- Écran d'introduction -->
+    <div class="intro">
+        <div class="intro-content">
+            <h1 class="logo">
+                AR <span>Agence Web</span>
+            </h1>
 
+            <div class="intro-line"></div>
+
+            <p class="intro-text">
+                Créons votre présence digitale
+            </p>
+        </div>
+    </div>
     <!-- SVG RÉUTILISABLES -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
         <defs>
@@ -1821,7 +2318,9 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="image/Agency web.png" alt="AR Agence Web - Création de sites internet professionnels">
+                <a href="#accueil" class="brand" aria-label="AR Agence Web - Accueil">
+                    <span class="brand-ar">AR</span> <span class="brand-agence">Agence Web</span>
+                </a>
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">À propos</a></li>
@@ -1846,7 +2345,7 @@
 
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="accueil">
         <div class="hero-paths" id="heroPaths"></div>
         <div class="hero-content">
             <h1>Votre activité mérite mieux qu'un simple site web</h1>
@@ -2321,14 +2820,12 @@
                 <p>Nous sommes là pour vous écouter, vous conseiller et vous proposer la solution la plus adaptée</p>
             </div>
             <div class="contact-container">
-                <div style="position:relative; overflow:hidden;">
+                <div class="form-card"><div class="form-clip">
                     <iframe
                         data-tally-src="https://tally.so/embed/A7QDZ0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                         loading="lazy" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0"
                         title="Formulaire de contact AR Agence Web" style="border:none; display:block;">
                     </iframe>
-                    <div
-                        style="position:absolute; bottom:0; right:0; width:200px; height:70px; background:#f8f9fa; z-index:10;">
                     </div>
                     <script async src="https://tally.so/widgets/embed.js"></script>
                 </div>
@@ -2383,7 +2880,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo-text">
-                <img src="image/Agency_web-removebg-preview.png" alt="Logo AR Agence Web">
+                <a href="#accueil" class="brand brand--light" aria-label="AR Agence Web - Accueil">
+                    <span class="brand-ar">AR</span> <span class="brand-agence">Agence Web</span>
+                </a>
             </div>
             <div class="footer-text">
                 <p>© <span id="year"></span> AR Agence Web – Création de sites web professionnels</p>
@@ -2490,6 +2989,8 @@
                 svg.setAttribute('fill', 'none');
                 svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
                 svg.setAttribute('aria-hidden', 'true');
+                svg.style.color = position > 0 ? '#ffffff' : '#c9a961';
+                svg.style.opacity = position > 0 ? '1' : '0.75';
 
                 for (let i = 0; i < PATH_COUNT; i++) {
                     const sx = i * SPREAD_X * position;
@@ -2510,11 +3011,11 @@
                     path.setAttribute('d', d);
                     path.setAttribute('pathLength', '1');
                     path.setAttribute('stroke', 'currentColor');
-                    path.setAttribute('stroke-width', (0.5 + (i / PATH_COUNT) * 1.2).toFixed(2));
-                    path.setAttribute('stroke-opacity', (0.12 + (i / PATH_COUNT) * 0.5).toFixed(2));
+                    path.setAttribute('stroke-width', (0.4 + (i / PATH_COUNT) * 0.8).toFixed(2));
+                    path.setAttribute('stroke-opacity', (0.08 + (i / PATH_COUNT) * 0.4).toFixed(2));
 
                     // Chaque courbe ondule à sa propre vitesse, dans un sens donné
-                    const duration = (20 + Math.random() * 10).toFixed(1);
+                    const duration = (40 + Math.random() * 25).toFixed(1);
                     path.style.animation = 'heroPathFlow ' + duration + 's linear infinite';
                     path.style.animationDirection = position > 0 ? 'normal' : 'reverse';
 
@@ -2525,6 +3026,21 @@
 
             container.appendChild(buildLayer(1));
             container.appendChild(buildLayer(-1));
+        })();
+    </script>
+
+
+    <script>
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            document.documentElement.classList.add('js-reveal');
+            var items = document.querySelectorAll('.section-title, .service-card, .ai-card, .benefit-item, .step, .portfolio-item, .testimonial, .ai-highlight, .contact-info, .form-card, .who-text, .who-image, .about-text');
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); setTimeout(function () { t.classList.remove('reveal', 'in'); }, 900); }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
         })();
     </script>
 
